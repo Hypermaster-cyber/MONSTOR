@@ -145,9 +145,24 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.getElementById('toggle-vt').addEventListener('click',()=>toggleGraphType('vt'));
     document.getElementById('toggle-at').addEventListener('click',()=>toggleGraphType('at'));
     document.getElementById('submit-quiz').addEventListener('click',submitQuiz);
-
-    // smooth scroll for anchor links if any
+    // smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
         anchor.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t) t.scrollIntoView({behavior:'smooth'});});
     });
+
+    // download buttons
+    document.querySelectorAll('button.download').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            const target = btn.getAttribute('data-target');
+            const chart = {distanceTimeChart,velocityTimeChart,accelerationTimeChart}[target];
+            if(chart){
+                const url = chart.toBase64Image();
+                const a = document.createElement('a');
+                a.href = url; a.download = `${target}.png`; document.body.appendChild(a); a.click(); a.remove();
+            }
+        });
+    });
 });
+
+// Expose toggle function for console/testing
+window.toggleGraphType = toggleGraphType;
