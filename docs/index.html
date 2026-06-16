@@ -1,69 +1,94 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Motion Charts Demo</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <main class="container">
-    <h1>Motion Charts Demo</h1>
-
-    <section class="chart-card">
-      <h2>Distance vs Time</h2>
-      <canvas id="distanceTimeChart"></canvas>
-      <div class="controls">
-        <button id="toggle-dt">Toggle Distance Graph</button>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>MONSTOR — Motion Charts</title>
+    <meta name="description" content="Interactive charts demonstrating distance, velocity and acceleration over time." />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/MONSTOR/">MONSTOR</a>
+        <nav>
+          <a href="#charts">Charts</a>
+          <a href="#quiz">Quiz</a>
+          <a href="https://github.com/Hypermaster-cyber/MONSTOR" target="_blank" rel="noopener">Source</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <section class="chart-card">
-      <h2>Velocity vs Time</h2>
-      <canvas id="velocityTimeChart"></canvas>
-      <div class="controls">
-        <button id="toggle-vt">Toggle Velocity Graph</button>
-      </div>
-    </section>
+    <main class="container">
+      <section class="hero">
+        <h1>Interactive Motion Charts</h1>
+        <p>Explore distance, velocity, and acceleration with responsive, exportable charts.</p>
+      </section>
 
-    <section class="chart-card">
-      <h2>Acceleration vs Time</h2>
-      <canvas id="accelerationTimeChart"></canvas>
-      <div class="controls">
-        <button id="toggle-at">Toggle Acceleration Graph</button>
-      </div>
-    </section>
+      <section id="charts" class="grid">
+        <article class="chart-card">
+          <h2>Distance vs Time</h2>
+          <canvas id="distanceTimeChart" aria-label="Distance vs Time chart"></canvas>
+          <div class="controls">
+            <button id="toggle-dt">Toggle Distance Graph</button>
+            <button class="download" data-target="distanceTimeChart">Download PNG</button>
+          </div>
+        </article>
 
-    <section class="quiz">
-      <h2>Quick Quiz</h2>
-      <form id="quiz-form">
-        <div class="q">
-          <p>1. Rate of change of distance with time is called?</p>
-          <label><input type="radio" name="q1" value="Speed"> Speed</label>
-          <label><input type="radio" name="q1" value="Acceleration"> Acceleration</label>
-          <label><input type="radio" name="q1" value="Displacement"> Displacement</label>
-        </div>
-        <div class="q">
-          <p>2. Shortest path between two points is?</p>
-          <label><input type="radio" name="q2" value="Distance"> Distance</label>
-          <label><input type="radio" name="q2" value="Displacement"> Displacement</label>
-          <label><input type="radio" name="q2" value="Speed"> Speed</label>
-        </div>
-        <div class="q">
-          <p>3. If an object is not moving, we say?</p>
-          <label><input type="radio" name="q3" value="Object is at rest"> Object is at rest</label>
-          <label><input type="radio" name="q3" value="Object is in motion"> Object is in motion</label>
-          <label><input type="radio" name="q3" value="Accelerating"> Accelerating</label>
-        </div>
-        <div class="quiz-actions">
-          <button type="button" id="submit-quiz">Submit Quiz</button>
-          <div id="quiz-result" class="quiz-result"></div>
-        </div>
-      </form>
-    </section>
-  </main>
+        <article class="chart-card">
+          <h2>Velocity vs Time</h2>
+          <canvas id="velocityTimeChart" aria-label="Velocity vs Time chart"></canvas>
+          <div class="controls">
+            <button id="toggle-vt">Toggle Velocity Graph</button>
+            <button class="download" data-target="velocityTimeChart">Download PNG</button>
+          </div>
+        </article>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="script.js"></script>
-</body>
+        <article class="chart-card">
+          <h2>Acceleration vs Time</h2>
+          <canvas id="accelerationTimeChart" aria-label="Acceleration vs Time chart"></canvas>
+          <div class="controls">
+            <button id="toggle-at">Toggle Acceleration Graph</button>
+            <button class="download" data-target="accelerationTimeChart">Download PNG</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="quiz" class="quiz">
+        <h2>Quick Quiz</h2>
+        <form id="quiz-form" aria-describedby="quiz-result">
+          <fieldset>
+            <legend>1. Rate of change of distance with time is called?</legend>
+            <label><input type="radio" name="q1" value="Speed"> Speed</label>
+            <label><input type="radio" name="q1" value="Acceleration"> Acceleration</label>
+            <label><input type="radio" name="q1" value="Displacement"> Displacement</label>
+          </fieldset>
+          <fieldset>
+            <legend>2. Shortest path between two points is?</legend>
+            <label><input type="radio" name="q2" value="Distance"> Distance</label>
+            <label><input type="radio" name="q2" value="Displacement"> Displacement</label>
+            <label><input type="radio" name="q2" value="Speed"> Speed</label>
+          </fieldset>
+          <fieldset>
+            <legend>3. If an object is not moving, we say?</legend>
+            <label><input type="radio" name="q3" value="Object is at rest"> Object is at rest</label>
+            <label><input type="radio" name="q3" value="Object is in motion"> Object is in motion</label>
+            <label><input type="radio" name="q3" value="Accelerating"> Accelerating</label>
+          </fieldset>
+          <div class="quiz-actions">
+            <button type="button" id="submit-quiz">Submit Quiz</button>
+            <div id="quiz-result" class="quiz-result" role="status" aria-live="polite"></div>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">© Hypermaster-cyber — MONSTOR</div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
